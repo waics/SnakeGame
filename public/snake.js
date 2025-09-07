@@ -93,7 +93,12 @@ function draw() {
     }
 }
 
+
 document.addEventListener('keydown', e => {
+    // 阻止方向键导致页面滚动
+    if (["ArrowLeft", "ArrowUp", "ArrowRight", "ArrowDown"].includes(e.key)) {
+        e.preventDefault();
+    }
     if (e.key === 'ArrowLeft' && direction !== 'RIGHT') direction = 'LEFT';
     if (e.key === 'ArrowUp' && direction !== 'DOWN') direction = 'UP';
     if (e.key === 'ArrowRight' && direction !== 'LEFT') direction = 'RIGHT';
