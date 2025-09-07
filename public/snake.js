@@ -1,7 +1,7 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const box = 20; // 每格大小
-const canvasSize = 400;
+const canvasSize = 600;
 let snake = [];
 let direction = 'RIGHT';
 let food = {};
