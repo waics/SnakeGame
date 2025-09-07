@@ -10,6 +10,10 @@
     <h1>贪吃蛇游戏</h1>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
     <div id="score">分数: 0</div>
+    <label for="speedSlider" style="margin: 10px 0; display: block;">速度：
+        <input type="range" id="speedSlider" min="1" max="10" value="5" style="vertical-align:middle;">
+        <span id="speedValue">5</span>
+    </label>
     <button id="restartBtn">重新开始</button>
     <script src="snake.js"></script>
 </body>

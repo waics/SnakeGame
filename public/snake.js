@@ -7,6 +7,9 @@ let direction = 'RIGHT';
 let food = {};
 let score = 0;
 let gameInterval = null;
+let speed = 100;
+const speedSlider = document.getElementById('speedSlider');
+const speedValue = document.getElementById('speedValue');
 
 function initGame() {
     snake = [
@@ -19,9 +22,14 @@ function initGame() {
     document.getElementById('score').innerText = '分数: ' + score;
     placeFood();
     if (gameInterval) clearInterval(gameInterval);
-    gameInterval = setInterval(draw, 100);
+    // 获取速度设置（滑块1-10，数值越大越快，速度间隔越小）
+    if (speedSlider) {
+        // 速度区间：1(最慢, 200ms) ~ 10(最快, 30ms)
+        const sliderVal = parseInt(speedSlider.value, 10);
+        speed = 200 - (sliderVal - 1) * 19;
+    }
+    gameInterval = setInterval(draw, speed);
 }
-
 function placeFood() {
     food = {
         x: Math.floor(Math.random() * (canvasSize / box)),
@@ -91,6 +99,19 @@ document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight' && direction !== 'LEFT') direction = 'RIGHT';
     if (e.key === 'ArrowDown' && direction !== 'UP') direction = 'DOWN';
 });
+
+
+
+
+// 滑块变更时，显示数值并重启游戏
+if (speedSlider && speedValue) {
+    speedSlider.oninput = function() {
+        speedValue.textContent = speedSlider.value;
+    };
+    speedSlider.onchange = function() {
+        initGame();
+    };
+}
 
 document.getElementById('restartBtn').onclick = initGame;
 
